@@ -52,11 +52,11 @@ The following algorithms were implemented and compared:
 
 ### 1. Home Page
 
-![Diabetes Prediction Home Page](./diabetes-home.png)
+![Diabetes Prediction Home Page](./diabetes-result.png)
 
 ### 2. Prediction Result
 
-![Diabetes Prediction Result](./diabetes-result.png)
+![Diabetes Prediction Result](./diabetes-home.png)
 ## 📂 Project Structure
 
 ```text
