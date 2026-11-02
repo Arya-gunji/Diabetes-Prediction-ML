@@ -1,63 +1,69 @@
+
 # 🩺 Smart Diabetes Risk Assessment
-### Diabetes Prediction Using Machine Learning
 
-## 📌 Project Overview
+### Machine Learning Based Diabetes Prediction System
 
-Smart Diabetes Risk Assessment is a Machine Learning web application that predicts whether a person is likely to have diabetes based on medical input parameters.
+A Machine Learning-based web application that predicts diabetes using patient health information. The application uses a trained Random Forest classification model and provides predictions through a user-friendly Flask web interface.
 
-The project uses a Random Forest classification model and a Flask web application to provide predictions through a simple and user-friendly interface.
+---
 
-## 🎯 Project Objectives
+## 📌 1. Project Overview
+
+The Smart Diabetes Risk Assessment project aims to predict diabetes based on patient medical information using Machine Learning techniques.
+
+The system accepts health-related inputs, performs data preprocessing, applies feature scaling, and uses a trained Random Forest model to generate predictions.
+
+The application is developed using Python and Flask.
+
+## 🎯 2. Project Objectives
 
 - Predict diabetes using Machine Learning.
-- Perform data preprocessing and handle missing values.
-- Apply feature scaling to improve model performance.
-- Compare multiple Machine Learning algorithms.
-- Build a web application using Flask.
+- Perform data cleaning and preprocessing.
+- Handle missing values using SimpleImputer.
+- Apply feature scaling using StandardScaler.
+- Compare different classification algorithms.
+- Develop a user-friendly web application using Flask.
+- Generate predictions based on patient input.
 
-## 🛠️ Technologies Used
+## 🛠️ 3. Technologies Used
 
-- **Programming Language:** Python
-- **Machine Learning:** Scikit-learn
-- **Data Analysis:** Pandas, NumPy
-- **Data Visualization:** Matplotlib
-- **Web Framework:** Flask
-- **Frontend:** HTML, CSS
-- **Development Tool:** Jupyter Notebook
+| Technology | Purpose |
+|---|---|
+| Python | Programming Language |
+| Pandas | Data Manipulation |
+| NumPy | Numerical Operations |
+| Matplotlib | Data Visualization |
+| Scikit-learn | Machine Learning |
+| Flask | Web Application |
+| Jupyter Notebook | Model Development |
+| HTML | Web Page Structure |
+| CSS | Web Page Styling |
+| Pickle | Model Serialization |
 
-## 🤖 Machine Learning Algorithms
+## 🤖 4. Machine Learning Algorithms
 
-The following algorithms were implemented and compared:
+The following classification algorithms were implemented and compared:
 
 1. Naive Bayes
-2. Random Forest
+2. Random Forest Classifier
 3. K-Nearest Neighbors (KNN)
 4. Support Vector Machine (SVM)
 
 **Selected Model:** Random Forest Classifier
 
-**Reported Accuracy:** 75% (as measured in the project notebook)
+The trained Random Forest model is integrated into the Flask application for diabetes prediction.
 
-## ✨ Features
+## 📊 5. Model Performance
 
-- Diabetes prediction based on medical parameters.
-- Data preprocessing and missing-value handling.
-- Feature scaling using StandardScaler.
-- Random Forest classification.
-- User-friendly web interface.
-- Prediction result display.
-- Reset button to clear input fields.
+The notebook reports the following Random Forest model accuracy:
 
-## 📸 Project Screenshots
+| Model | Accuracy |
+|---|---:|
+| Random Forest | 75% |
 
-### 1. Home Page
+**Note:** This is the accuracy reported in the project notebook. Performance may vary with different datasets and evaluation conditions.
 
-![Diabetes Prediction Home Page](./diabetes-result.png)
-
-### 2. Prediction Result
-
-![Diabetes Prediction Result](./diabetes-home.png)
-## 📂 Project Structure
+## 📁 6. Project Structure
 
 ```text
 Diabetes-Prediction-ML/
@@ -74,68 +80,70 @@ Diabetes-Prediction-ML/
 ├── templates/
 │   └── index.html
 │
-└── screenshots/
-    ├── diabetes-home.png
-    └── diabetes-result.png
+├── diabetes-home.png.png
+└── diabetes-result.png.png
 ```
 
-## ⚙️ Installation and Setup
+## ⚙️ 7. Installation and Execution Steps
 
-### 1. Clone the Repository
+### Step 1: Clone the Repository
 
 ```bash
 git clone https://github.com/Arya-gunji/Diabetes-Prediction-ML.git
 ```
 
-### 2. Open the Project Folder
+### Step 2: Navigate to Project Folder
 
 ```bash
 cd Diabetes-Prediction-ML
 ```
 
-### 3. Install Required Libraries
+### Step 3: Install Required Libraries
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Run the Flask Application
+### Step 4: Run the Flask Application
 
 ```bash
 python app.py
 ```
 
-### 5. Open in Browser
+### Step 5: Open in Browser
 
 ```text
 http://127.0.0.1:5000/
 ```
 
-## 🔄 Application Workflow
+Enter the required patient information and click the Predict Diabetes button to view the model prediction.
 
-1. User enters the required medical details.
-2. Flask receives the input values.
-3. The imputer handles missing values.
-4. The scaler transforms the input data.
-5. The Random Forest model predicts the result.
-6. The prediction is displayed on the web page.
+## 📸 8. Project Screenshots
 
-## 📊 Model Performance
+### Home Page
 
-The Random Forest model achieved **75% accuracy** in the reported notebook evaluation.
+![Diabetes Prediction Home Page](./diabetes-result.png.png)
 
-The notebook also includes model comparison using accuracy, confusion matrix, and classification report.
+### Prediction Result
 
-## 👨‍💻 Developer
+![Diabetes Prediction Result](./diabetes-home.png.png)
+
+## 👨‍💻 9. Author Details
 
 **Arya Gunji**
 
-- GitHub: https://github.com/Arya-gunji
-- LinkedIn: https://www.linkedin.com/in/arya-gunji/
+B.Tech – Information Technology
+
+Interested in Data Science, Machine Learning, Python and Generative AI.
+
+- **GitHub:** [Arya-gunji](https://github.com/Arya-gunji)
+- **LinkedIn:** [Arya Gunji](https://www.linkedin.com/in/arya-gunji/)
+
+---
 
 ## ⚠️ Disclaimer
 
-This project is developed for educational purposes only. Its predictions are not a medical diagnosis. Please consult a qualified healthcare professional for medical advice.
+This project is developed for educational purposes only. Its predictions are not a substitute for professional medical advice, diagnosis, or treatment.
 
 ---
 
