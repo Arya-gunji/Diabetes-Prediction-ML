@@ -1,205 +1,567 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diabetes Prediction</title>
+
+    <title>Smart Diabetes Risk Assessment</title>
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #eaf6f6;
+        * {
             margin: 0;
-            padding: 30px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background:
+                radial-gradient(circle at top left, #60a5fa 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #818cf8 0%, transparent 35%),
+                linear-gradient(135deg, #0f172a, #1e3a8a, #312e81);
+            min-height: 100vh;
+            padding: 40px 15px;
+            color: #1e293b;
         }
 
         .container {
-            width: 650px;
-            max-width: calc(100% - 60px);
-            margin: 20px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: auto;
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
         }
 
-        h1 {
-            text-align: center;
-            color: #087f8c;
-            margin-bottom: 10px;
-        }
+        /* Header */
 
-        .subtitle {
+        .header {
             text-align: center;
-            color: #666;
             margin-bottom: 30px;
         }
 
-        .form-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+        .medical-icon {
+            font-size: 42px;
+            margin-bottom: 10px;
         }
 
-        .field {
-            margin-bottom: 18px;
+        .header h1 {
+            color: #1d4ed8;
+            font-size: 30px;
+            margin-bottom: 10px;
         }
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-            font-weight: bold;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 12px;
-            border: 1px solid #ccdada;
-            border-radius: 7px;
+        .header p {
+            color: #64748b;
             font-size: 15px;
         }
 
-        input:focus {
-            outline: none;
-            border-color: #087f8c;
+        .tagline {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 7px 16px;
+            background: #eff6ff;
+            color: #2563eb;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
         }
 
-        input[type="submit"] {
-            width: 100%;
-            padding: 14px;
-            background: #087f8c;
-            color: white;
-            border: none;
-            border-radius: 7px;
+        /* Form */
+
+        .section-heading {
+            font-size: 19px;
+            color: #1e40af;
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 9px;
+            font-size: 14px;
+            color: #334155;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
             font-size: 17px;
-            font-weight: bold;
+            pointer-events: none;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px 13px 13px 43px;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            outline: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        input::placeholder {
+            color: #94a3b8;
+        }
+
+        /* Buttons */
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        button {
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            margin-top: 10px;
+            transition: 0.3s;
         }
 
-        input[type="submit"]:hover {
-            background: #066570;
+        .predict-btn {
+            flex: 2;
+            background: linear-gradient(90deg, #2563eb, #4f46e5);
+            color: white;
         }
 
-        .output {
+        .predict-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(37, 99, 235, 0.3);
+        }
+
+        .reset-btn {
+            flex: 1;
+            background: #e2e8f0;
+            color: #334155;
+        }
+
+        .reset-btn:hover {
+            background: #cbd5e1;
+        }
+
+        /* Prediction result */
+
+        .result {
             margin-top: 25px;
-            padding: 18px;
-            background: #f0fafa;
-            border-left: 5px solid #087f8c;
-            border-radius: 7px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .result.success {
+            background: #dcfce7;
+            border: 1px solid #86efac;
+            color: #166534;
+        }
+
+        .result.danger {
+            background: #fee2e2;
+            border: 1px solid #fca5a5;
+            color: #991b1b;
+        }
+
+        .result-icon {
+            display: block;
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        /* About section */
+
+        .about {
+            margin-top: 40px;
+            padding: 25px;
+            background: #f8fafc;
+            border-radius: 13px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .about h2,
+        .developer h2 {
+            color: #1d4ed8;
+            margin-bottom: 14px;
+            font-size: 21px;
+        }
+
+        .about p {
+            color: #64748b;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .algorithm-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .algorithm {
+            background: #dbeafe;
+            color: #1d4ed8;
+            padding: 8px 13px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Developer section */
+
+        .developer {
+            margin-top: 25px;
+            padding: 25px;
+            background: #eff6ff;
+            border-radius: 13px;
             text-align: center;
         }
 
-        .output h2 {
-            color: #087f8c;
-            margin-top: 0;
+        .developer h3 {
+            color: #1e293b;
+            font-size: 20px;
+            margin-bottom: 8px;
         }
 
-        .output h3 {
-            color: #333;
-            margin-bottom: 0;
+        .developer p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 16px;
         }
 
-        @media (max-width: 700px) {
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            background: #2563eb;
+            color: white;
+            padding: 10px 17px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #1e40af;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        /* Mobile responsive */
+
+        @media (max-width: 600px) {
             body {
-                padding: 10px;
+                padding: 20px 12px;
             }
 
             .container {
-                width: auto;
-                max-width: none;
-                margin: 10px auto;
-                padding: 20px;
+                padding: 22px;
             }
 
-            .form-group {
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .form-grid {
                 grid-template-columns: 1fr;
-                gap: 0;
+            }
+
+            .button-group {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 
 <body>
+
     <div class="container">
-        <h1>Diabetes Prediction</h1>
 
-        <p class="subtitle">
-            Enter your health details to get a model prediction
-        </p>
+        <!-- Header -->
 
-        <form action="/predict" method="post">
-            <div class="form-group">
+        <div class="header">
+            <div class="medical-icon">🩺</div>
 
-                <div class="field">
-                    <label for="num_preg">Number of Pregnancies</label>
-                    <input type="text" id="num_preg" name="num_preg"
-                           value="{{ form_data.get('num_preg', '') if form_data else '' }}"
-                           inputmode="decimal" required>
+            <h1>Smart Diabetes Risk Assessment</h1>
+
+            <p>Machine Learning Based Diabetes Prediction System</p>
+
+            <span class="tagline">
+                Healthcare Technology | Artificial Intelligence
+            </span>
+        </div>
+
+        <!-- Prediction Form -->
+
+        <h2 class="section-heading">Enter Patient Information</h2>
+
+        <form action="/predict" method="POST">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Number of Pregnancies</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🤰</span>
+                        <input type="number" name="num_preg"
+                               min="0" step="any" required
+                               placeholder="Enter pregnancies">
+                    </div>
                 </div>
 
-                <div class="field">
-                    <label for="glucose_conc">Glucose Concentration</label>
-                    <input type="text" id="glucose_conc" name="glucose_conc"
-                           value="{{ form_data.get('glucose_conc', '') if form_data else '' }}"
-                           inputmode="decimal" required>
+                <div class="form-group">
+                    <label>Glucose Concentration</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🩸</span>
+                        <input type="number" name="glucose_conc"
+                               min="0" step="any" required
+                               placeholder="Enter glucose level">
+                    </div>
                 </div>
 
-                <div class="field">
-                    <label for="diastolic_bp">Diastolic Blood Pressure</label>
-                    <input type="text" id="diastolic_bp" name="diastolic_bp"
-                           value="{{ form_data.get('diastolic_bp', '') if form_data else '' }}"
-                           inputmode="decimal" required>
+                <div class="form-group">
+                    <label>Diastolic Blood Pressure</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">❤️</span>
+                        <input type="number" name="diastolic_bp"
+                               min="0" step="any" required
+                               placeholder="Enter blood pressure">
+                    </div>
                 </div>
 
-                <div class="field">
-                    <label for="insulin">Insulin</label>
-                    <input type="text" id="insulin" name="insulin"
-                           value="{{ form_data.get('insulin', '') if form_data else '' }}"
-                           inputmode="decimal" required>
+                <div class="form-group">
+                    <label>Insulin Level</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">💉</span>
+                        <input type="number" name="insulin"
+                               min="0" step="any" required
+                               placeholder="Enter insulin level">
+                    </div>
                 </div>
 
-                <div class="field">
-                    <label for="bmi">BMI</label>
-                    <input type="text" id="bmi" name="bmi"
-                           value="{{ form_data.get('bmi', '') if form_data else '' }}"
-                           inputmode="decimal" required>
+                <div class="form-group">
+                    <label>Body Mass Index (BMI)</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">⚖️</span>
+                        <input type="number" name="bmi"
+                               min="0" step="any" required
+                               placeholder="Enter BMI">
+                    </div>
                 </div>
 
-                <div class="field">
-                    <label for="diab_pred">Diabetes Pedigree Function</label>
-                    <input type="text" id="diab_pred" name="diab_pred"
-                           value="{{ form_data.get('diab_pred', '') if form_data else '' }}"
-                           inputmode="decimal" required>
+                <div class="form-group">
+                    <label>Diabetes Pedigree Function</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">📊</span>
+                        <input type="number" name="diab_pred"
+                               min="0" step="any" required
+                               placeholder="Enter pedigree value">
+                    </div>
                 </div>
 
-                <div class="field">
-                    <label for="age">Age</label>
-                    <input type="text" id="age" name="age"
-                           value="{{ form_data.get('age', '') if form_data else '' }}"
-                           inputmode="decimal" required>
+                <div class="form-group">
+                    <label>Age</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🎂</span>
+                        <input type="number" name="age"
+                               min="1" step="any" required
+                               placeholder="Enter your age">
+                    </div>
                 </div>
 
-                <div class="field">
-                    <label for="skin">Skin Thickness</label>
-                    <input type="text" id="skin" name="skin"
-                           value="{{ form_data.get('skin', '') if form_data else '' }}"
-                           inputmode="decimal" required>
+                <div class="form-group">
+                    <label>Skin Thickness</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🧬</span>
+                        <input type="number" name="skin"
+                               min="0" step="any" required
+                               placeholder="Enter skin thickness">
+                    </div>
                 </div>
 
             </div>
 
-            <input type="submit" value="Predict">
+            <!-- Buttons -->
+
+            <div class="button-group">
+
+                <button type="submit" class="predict-btn">
+                    🔍 Predict Diabetes
+                </button>
+
+                <button type="reset" class="reset-btn">
+                    ↻ Reset
+                </button>
+
+            </div>
+
         </form>
 
-        {% if prediction_text %}
-            <div class="output" role="status" aria-live="polite">
-                <h2>Prediction Output</h2>
-                <h3>{{ prediction_text }}</h3>
+        <!-- Prediction Result -->
+
+        {% if prediction_text is defined and prediction_text %}
+
+            {% set result = prediction_text %}
+
+            <div class="result
+                {% if 'Not Diabetic' in result %}
+                    success
+                {% elif 'Diabetic' in result %}
+                    danger
+                {% else %}
+                    success
+                {% endif %}">
+
+                {% if 'Not Diabetic' in result %}
+                    <span class="result-icon">✅</span>
+                {% elif 'Diabetic' in result %}
+                    <span class="result-icon">⚠️</span>
+                {% else %}
+                    <span class="result-icon">📋</span>
+                {% endif %}
+
+                {{ result }}
+
             </div>
+
+        {% elif prediction is defined and prediction %}
+
+            <div class="result
+                {% if 'Not Diabetic' in prediction|string %}
+                    success
+                {% elif 'Diabetic' in prediction|string %}
+                    danger
+                {% else %}
+                    success
+                {% endif %}">
+
+                {{ prediction }}
+
+            </div>
+
         {% endif %}
+
+        <!-- About Project -->
+
+        <div class="about">
+
+            <h2>📌 About This Project</h2>
+
+            <p>
+                The Smart Diabetes Risk Assessment project is a
+                machine learning-based application designed to
+                predict diabetes using patient health information.
+                It processes input data through preprocessing
+                techniques and uses a trained Random Forest model
+                to generate a prediction.
+            </p>
+
+            <br>
+
+            <p><strong>Machine Learning Algorithms Used:</strong></p>
+
+            <div class="algorithm-list">
+                <span class="algorithm">Random Forest</span>
+                <span class="algorithm">Naive Bayes</span>
+                <span class="algorithm">K-Nearest Neighbors</span>
+                <span class="algorithm">Support Vector Machine</span>
+            </div>
+
+            <br>
+
+            <p><strong>Technologies:</strong> Python, Flask,
+                Pandas, NumPy, Scikit-learn and Machine Learning.
+            </p>
+
+        </div>
+
+        <!-- Developer Section -->
+
+        <div class="developer">
+
+            <h2>👨‍💻 Developed By</h2>
+
+            <h3>Arya Gunji</h3>
+
+            <p>Data Science | Machine Learning | Python Developer</p>
+
+            <div class="social-links">
+
+                <a href="https://github.com/Arya-gunji"
+                   target="_blank" rel="noopener noreferrer">
+                    GitHub
+                </a>
+
+                <a href="https://www.linkedin.com/in/arya-gunji/"
+                   target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+
+        <div class="footer">
+
+            <p>Powered by Machine Learning | Random Forest Algorithm</p>
+
+            <p>
+                For educational purposes only.
+                This tool is not a medical diagnosis.
+            </p>
+
+            <p>© 2026 Smart Diabetes Risk Assessment</p>
+
+        </div>
+
     </div>
+
 </body>
 </html>
