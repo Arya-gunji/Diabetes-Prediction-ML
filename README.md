@@ -122,11 +122,11 @@ Enter the required patient information and click the Predict Diabetes button to 
 
 ### Home Page
 
-![Diabetes Prediction Home Page](./diabetes-result.png.png)
+![Diabetes Prediction Home Page](./diabetes-result.png)
 
 ### Prediction Result
 
-![Diabetes Prediction Result](./diabetes-home.png.png)
+![Diabetes Prediction Result](./diabetes-home.png)
 
 ## 👨‍💻 9. Author Details
 
