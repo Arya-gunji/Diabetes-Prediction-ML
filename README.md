@@ -51,12 +51,10 @@ The following algorithms were implemented and compared:
 ## 📸 Project Screenshots
 
 ### 1. Home Page
-
-![Smart Diabetes Risk Assessment - Home Page](screenshots/diabetes-home.png)
+![Smart Diabetes Risk Assessment - Home Page](screenshots/home.png)
 
 ### 2. Prediction Result
-
-![Smart Diabetes Risk Assessment - Prediction Result](screenshots/diabetes-result.png)
+![Smart Diabetes Risk Assessment - Prediction Result](screenshots/prediction-result.png)
 
 ## 📂 Project Structure
 
