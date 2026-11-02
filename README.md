@@ -1,60 +1,62 @@
 # 🩺 Smart Diabetes Risk Assessment
-
-### Machine Learning Based Diabetes Prediction System
+### Diabetes Prediction Using Machine Learning
 
 ## 📌 Project Overview
 
-This project predicts whether a person is diabetic or not using Machine Learning algorithms. It also provides a Flask web application where users can enter health-related details and receive a prediction.
+Smart Diabetes Risk Assessment is a Machine Learning web application that predicts whether a person is likely to have diabetes based on medical input parameters.
 
-The application uses a trained Random Forest model to generate predictions based on patient health information.
+The project uses a Random Forest classification model and a Flask web application to provide predictions through a simple and user-friendly interface.
 
 ## 🎯 Project Objectives
 
 - Predict diabetes using Machine Learning.
-- Perform data preprocessing and feature scaling.
-- Compare different classification algorithms.
-- Develop a user-friendly web application using Flask.
+- Perform data preprocessing and handle missing values.
+- Apply feature scaling to improve model performance.
+- Compare multiple Machine Learning algorithms.
+- Build a web application using Flask.
 
 ## 🛠️ Technologies Used
 
-- Python
-- Machine Learning
-- Pandas
-- NumPy
-- Matplotlib
-- Scikit-learn
-- Flask
-- HTML
-- CSS
-- Jupyter Notebook
+- **Programming Language:** Python
+- **Machine Learning:** Scikit-learn
+- **Data Analysis:** Pandas, NumPy
+- **Data Visualization:** Matplotlib
+- **Web Framework:** Flask
+- **Frontend:** HTML, CSS
+- **Development Tool:** Jupyter Notebook
 
 ## 🤖 Machine Learning Algorithms
 
-- Naive Bayes
-- Random Forest
-- K-Nearest Neighbors (KNN)
-- Support Vector Machine (SVM)
+The following algorithms were implemented and compared:
 
-**Selected Model:** Random Forest
+1. Naive Bayes
+2. Random Forest
+3. K-Nearest Neighbors (KNN)
+4. Support Vector Machine (SVM)
+
+**Selected Model:** Random Forest Classifier
+
+**Reported Accuracy:** 75% (as measured in the project notebook)
 
 ## ✨ Features
 
-- Patient health information input form.
-- Diabetes prediction using Random Forest.
-- Data preprocessing.
-- Missing value handling using SimpleImputer.
+- Diabetes prediction based on medical parameters.
+- Data preprocessing and missing-value handling.
 - Feature scaling using StandardScaler.
-- Attractive blue gradient background.
-- Medical icon and input field icons.
-- Green and red prediction result indicators.
+- Random Forest classification.
+- User-friendly web interface.
+- Prediction result display.
 - Reset button to clear input fields.
-- Responsive user interface.
-- About Project section.
-- Developer profile with GitHub and LinkedIn links.
 
-## 📊 Model Performance
+## 📸 Project Screenshots
 
-Random Forest achieved **75% accuracy** in the notebook's reported results.
+### 1. Home Page
+
+![Smart Diabetes Risk Assessment - Home Page](screenshots/diabetes-home.png)
+
+### 2. Prediction Result
+
+![Smart Diabetes Risk Assessment - Prediction Result](screenshots/diabetes-result.png)
 
 ## 📂 Project Structure
 
@@ -68,12 +70,17 @@ Diabetes-Prediction-ML/
 ├── imputer.pkl
 ├── requirements.txt
 ├── .gitignore
+├── README.md
 │
-└── templates/
-    └── index.html
+├── templates/
+│   └── index.html
+│
+└── screenshots/
+    ├── diabetes-home.png
+    └── diabetes-result.png
 ```
 
-## ⚙️ How to Run the Project
+## ⚙️ Installation and Setup
 
 ### 1. Clone the Repository
 
@@ -81,13 +88,13 @@ Diabetes-Prediction-ML/
 git clone https://github.com/Arya-gunji/Diabetes-Prediction-ML.git
 ```
 
-### 2. Navigate to Project Folder
+### 2. Open the Project Folder
 
 ```bash
 cd Diabetes-Prediction-ML
 ```
 
-### 3. Install Dependencies
+### 3. Install Required Libraries
 
 ```bash
 pip install -r requirements.txt
@@ -107,23 +114,29 @@ http://127.0.0.1:5000/
 
 ## 🔄 Application Workflow
 
-1. User enters patient health information.
-2. Flask receives the input through the prediction form.
-3. Missing values are handled using the saved imputer.
-4. Input features are scaled using the saved scaler.
-5. Random Forest model generates the prediction.
-6. The result is displayed on the webpage.
+1. User enters the required medical details.
+2. Flask receives the input values.
+3. The imputer handles missing values.
+4. The scaler transforms the input data.
+5. The Random Forest model predicts the result.
+6. The prediction is displayed on the web page.
+
+## 📊 Model Performance
+
+The Random Forest model achieved **75% accuracy** in the reported notebook evaluation.
+
+The notebook also includes model comparison using accuracy, confusion matrix, and classification report.
 
 ## 👨‍💻 Developer
 
 **Arya Gunji**
 
-- GitHub: [Arya-gunji](https://github.com/Arya-gunji)
-- LinkedIn: [Arya Gunji](https://www.linkedin.com/in/arya-gunji/)
+- GitHub: https://github.com/Arya-gunji
+- LinkedIn: https://www.linkedin.com/in/arya-gunji/
 
 ## ⚠️ Disclaimer
 
-This project is developed for educational purposes only. Its predictions are not a substitute for professional medical advice or diagnosis.
+This project is developed for educational purposes only. Its predictions are not a medical diagnosis. Please consult a qualified healthcare professional for medical advice.
 
 ---
 
